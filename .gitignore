@@ -1,0 +1,11 @@
+/r1 5 modelos.pdf
+/desktop.ini
+.env
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+mlruns/
+*.db
+.idea/
