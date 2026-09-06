@@ -5,6 +5,7 @@ Implemente as funções abaixo. Rode os testes com:
     venv\\Scripts\\python.exe -m pytest 01-python/test_dia1.py -v
 
 """
+import json
 
 
 def media(numeros: list[float]) -> float:
@@ -27,15 +28,21 @@ def contar_palavras(texto: str) -> dict[str, int]:
 
     palavras = texto.split()
     return {palavra: palavras.count(palavra) for palavra in set(palavras)}
-    raise NotImplementedError
 
 
 def dividir_com_seguranca(a: float, b: float) -> float | None:
     """Divide a por b. Se b for zero, retorna None em vez de lançar exceção.
 
-    Use try/except para capturar ZeroDivisionError.
-    """
-    raise NotImplementedError
+        Use try/except para capturar ZeroDivisionError.
+        """
+
+    try:
+        return a/b
+
+    except ZeroDivisionError:
+
+        return None
+
 
 
 def carregar_json_seguro(caminho: str) -> dict:
@@ -44,4 +51,11 @@ def carregar_json_seguro(caminho: str) -> dict:
     Se o arquivo não existir ou o conteúdo for JSON inválido, retorna {} (dicionário vazio)
     em vez de deixar a exceção propagar.
     """
-    raise NotImplementedError
+
+    try:
+      with open(caminho) as arquivo:
+          return json.load(arquivo)
+
+
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
